@@ -1,0 +1,4 @@
+ *  Create a standard file header with some license etc. info
+ *  Define some constraints of the library, probably:
+    - No dynamic memory usage (or explicitly state when used)
+    - Exceptions?
