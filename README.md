@@ -3,6 +3,13 @@ ucToolbox
 
 Collection of C++ libraries intended for use in embedded systems
 
+Library restrictions
+================
+- No dynamic memory usage
+-- I may change my mind about this. If I do, any library module that uses dynamic memory will clearly state so.
+- No exceptions or RTTI
+- No STL (for the moment, due to my lack of understanding)
+
 Aims
 ====
 
