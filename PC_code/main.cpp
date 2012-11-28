@@ -8,7 +8,6 @@ using namespace std;
 #include <cstdint>
 
 int main() {
-    int8_t bah = 0;
     printf("hi world\n");
     LOG_STDIO_unitTest();
     return 0;
