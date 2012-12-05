@@ -1,5 +1,4 @@
-//#include "logging_iostream.hpp"
-
+#include <cstdint>
 #include <stdio.h>
 #include "macro_tricks.h"
 #include "logging.hpp"
@@ -7,7 +6,6 @@
 
 using namespace std;
 using namespace ucToolbox;
-#include <cstdint>
 
 int main() {
     printf("hi world\n");
