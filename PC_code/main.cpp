@@ -1,6 +1,4 @@
-//#include "logging_iostream.hpp"
-
-#include <array>
+#include <cstdint>
 #include <stdio.h>
 #include "macro_tricks.h"
 #include "logging.hpp"
@@ -8,12 +6,10 @@
 
 using namespace std;
 using namespace ucToolbox;
-#include <cstdint>
 
 int main() {
-//    printf("hi world\n");
-//    LOG_STDIO_unitTest();
-
+    printf("hi world\n");
+    LOG_STDIO_unitTest();
     ringBufferUnitTest();
     return 0;
 }
