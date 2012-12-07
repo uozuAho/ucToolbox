@@ -21,10 +21,16 @@ public:
     return_value peek();
     return_value get();
     return_value put(int8_t byte);
-    return_value write(int8_t* buf, uint16_t len);
+    return_value write(int8_t* buf, size_t len);
+    return_value write(const char* buf, size_t len);
     bool isFull();
     bool isEmpty();
     void setStorage(int8_t* location, uint16_t capacity);
+
+#   ifdef BUILD_UNIT_TESTS
+        void printContents();
+        void printContents_detailed();
+#   endif
 
 private:
     int8_t* storage;

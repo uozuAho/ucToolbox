@@ -23,7 +23,7 @@ void LOG_STDIO_unitTest() {
     LOG_RUN(LOG_DEBUG, printf("run_2 test\n"));
 
     logch(LOG_CRITICAL, 'a');
-    logch(LOG_DEBUG, 'rrrrrrrr');
+    logstr(LOG_DEBUG, "rrrrrrrr");
 
     lognum(LOG_CRITICAL, 4);
     lognum(LOG_DEBUG, 234);

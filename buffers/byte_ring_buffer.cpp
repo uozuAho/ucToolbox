@@ -61,15 +61,28 @@ ByteRingBuffer::return_value ByteRingBuffer::put(int8_t byte) {
             put_idx = 0;
         if (put_idx == get_idx)
             full = true;
+        storage[temp] = byte;
         return OK;
     }
 }
 
-ByteRingBuffer::return_value ByteRingBuffer::write(int8_t* buf, uint16_t len) {
+ByteRingBuffer::return_value ByteRingBuffer::write(int8_t* buf, size_t len) {
     if (space() < len)
         return FAIL;
     else {
-        int i = 0;
+        size_t i = 0;
+        for(; i < len; i++) {
+            put(buf[i]);
+        }
+        return OK;
+    }
+}
+
+ByteRingBuffer::return_value ByteRingBuffer::write(const char* buf, size_t len) {
+    if (space() < len)
+        return FAIL;
+    else {
+        size_t i = 0;
         for(; i < len; i++) {
             put(buf[i]);
         }
@@ -87,3 +100,31 @@ uint16_t ByteRingBuffer::space() {
         return static_cast<uint16_t>(len);
     }
 }
+
+#ifdef BUILD_UNIT_TESTS
+#include "logging.hpp"
+void ByteRingBuffer::printContents() {
+    int i = 0;
+    for (; i < storage_capacity; i++) {
+        logch(LOG_DEBUG, storage[i]);
+    }
+}
+
+void ByteRingBuffer::printContents_detailed() {
+    int i = 0;
+    logstr(LOG_DEBUG, "idx   hex   ascii  get/putIdx\n");
+    for(; i < storage_capacity; i++) {
+        lognum(LOG_DEBUG, i);
+        logstr(LOG_DEBUG, "     ");
+        lognum_hex(LOG_DEBUG, storage[i]);
+        logstr(LOG_DEBUG, "  ");
+        logch(LOG_DEBUG, storage[i]);
+        logstr(LOG_DEBUG, "       ");
+        if (put_idx == i)
+            logstr(LOG_DEBUG, "<--putIdx ");
+        if (get_idx == i)
+            logstr(LOG_DEBUG, "<--getIdx");
+        logstr(LOG_DEBUG, "\n");
+    }
+}
+#endif // ifdef BUILD_UNIT_TESTS

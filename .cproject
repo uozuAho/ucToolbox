@@ -92,7 +92,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/logging}&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.misc.other.1578048497" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-c -fmessage-length=0 -std=c++0x" valueType="string"/>
-								<option id="gnu.c.compiler.option.preprocessor.def.symbols.628142354" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols"/>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.628142354" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="BUILD_UNIT_TESTS"/>
+								</option>
 								<option id="gnu.c.compiler.option.preprocessor.undef.symbol.448204352" name="Undefined symbols (-U)" superClass="gnu.c.compiler.option.preprocessor.undef.symbol"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.514755575" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -105,7 +107,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/logging}&quot;"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.other.other.125381650" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0  -std=c++0x" valueType="string"/>
-								<option id="gnu.cpp.compiler.option.preprocessor.def.1675650602" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def"/>
+								<option id="gnu.cpp.compiler.option.preprocessor.def.1675650602" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="BUILD_UNIT_TESTS"/>
+								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.undef.1504507659" name="Undefined symbols (-U)" superClass="gnu.cpp.compiler.option.preprocessor.undef"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.91801723" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

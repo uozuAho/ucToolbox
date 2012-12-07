@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include "byte_ring_buffer.hpp"
 #include "ring_buffer.hpp"
 
@@ -29,8 +30,16 @@ void byteRingBufferUnitTest() {
     int8_t storage[10];
     ByteRingBuffer buf(storage, 10);
     cout << "byteRingBufferUnitTest():" << endl;
-    buf.put('a');
-    printf("%c\n",buf.peek());
+    ByteRingBuffer::return_value result = buf.put('a');
+    cout << "buf.put('a') result: " << result << endl;
+    result = buf.get();
+    cout << "buf.get() result: " << result << endl;
+    result = buf.get();
+    cout << "buf.get() result: " << result << endl;
+    cout << "buf.peek() result: " << buf.peek() << endl;
+    buf.write("stuff", sizeof("stuff"));
+    cout << "buffer detailed contents:" << endl;
+    buf.printContents_detailed();
 }
 
 } // end namespace ucToolbox
