@@ -2,7 +2,10 @@
 #include "logging.hpp"
 #include "logging_stdio.hpp"
 
+namespace ucToolbox {
+
 void __logch(char c) {
+    // Need to check for zeros since printf interprets them as EOL characters (I think)
     if (c == 0) {
         printf(" ");
         fflush(stdout);
@@ -29,4 +32,4 @@ void LOG_STDIO_unitTest() {
     lognum(LOG_DEBUG, 234);
 }
 
-
+} // end namespace ucToolbox

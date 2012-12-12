@@ -41,6 +41,10 @@ private:
     uint16_t space();
 };
 
+#ifdef BUILD_UNIT_TESTS
+    void byteRingBufferUnitTest();
+#endif
+
 } // end namespace ucToolbox
 
 #endif // #ifndef BYTE_RING_BUFFER_H

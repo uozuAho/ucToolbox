@@ -101,6 +101,8 @@ uint16_t ByteRingBuffer::space() {
     }
 }
 
+// } // end namespace ucToolbox
+
 #ifdef BUILD_UNIT_TESTS
 #include "logging.hpp"
 void ByteRingBuffer::printContents() {
@@ -127,4 +129,29 @@ void ByteRingBuffer::printContents_detailed() {
         logstr(LOG_DEBUG, "\n");
     }
 }
+
+void ucToolbox::byteRingBufferUnitTest() {
+    int8_t storage[10];
+    ByteRingBuffer buf(storage, 10);
+    logstr(LOG_DEBUG, "byteRingBufferUnitTest():\n");
+    ByteRingBuffer::return_value result = buf.put('a');
+    logstr(LOG_DEBUG, "buf.put('a') result: ");
+    lognum(LOG_DEBUG, result);
+    logch(LOG_DEBUG, '\n');
+    result = buf.get();
+    logstr(LOG_DEBUG, "buf.get() result: ");
+    lognum(LOG_DEBUG, result);
+    logch(LOG_DEBUG, '\n');
+    result = buf.get();
+    logstr(LOG_DEBUG, "buf.get() result: ");
+    lognum(LOG_DEBUG, result);
+    logch(LOG_DEBUG, '\n');
+    logstr(LOG_DEBUG, "buf.peek() result: ");
+    lognum(LOG_DEBUG, buf.peek());
+    logch(LOG_DEBUG, '\n');
+    logstr(LOG_DEBUG, "Writing 'stuff' to buffer. Buffer contents:\n");
+    buf.write("stuff", sizeof("stuff"));
+    buf.printContents_detailed();
+}
 #endif // ifdef BUILD_UNIT_TESTS
+

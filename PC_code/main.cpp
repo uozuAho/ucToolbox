@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "macro_tricks.h"
 #include "logging.hpp"
-#include "buffers_unit_tests.hpp"
+#include "byte_ring_buffer.hpp"
 
 using namespace std;
 using namespace ucToolbox;

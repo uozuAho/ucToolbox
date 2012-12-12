@@ -11,6 +11,8 @@
 
 #define LOG_DEFAULT_LEVEL   LOG_DEBUG
 
+namespace ucToolbox {
+
 void __logch(char c);
 #define logch(level, ch)    LOG_RUN(level, __logch(ch))
 #define logstr(level, str)  LOG_RUN(level, {printf("%s",str); fflush(stdout);})
@@ -20,4 +22,5 @@ void __logch(char c);
 
 void LOG_STDIO_unitTest();
 
+}// end namespace ucToolbox
 #endif // LOGGING_STDIO_H
