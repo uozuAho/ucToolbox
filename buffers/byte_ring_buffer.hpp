@@ -6,6 +6,7 @@
 #define BYTE_RING_BUFFER_H
 
 #include <stdint.h>
+#include <stddef.h>
 
 namespace ucToolbox {
 
