@@ -52,7 +52,7 @@ ByteRingBuffer::return_value ByteRingBuffer::get() {
     }
 }
 
-ByteRingBuffer::return_value ByteRingBuffer::put(int8_t byte) {
+ByteRingBuffer::return_value ByteRingBuffer::write(const char byte) {
     if (isFull())
         return FAIL;
     else {
@@ -66,17 +66,17 @@ ByteRingBuffer::return_value ByteRingBuffer::put(int8_t byte) {
     }
 }
 
-ByteRingBuffer::return_value ByteRingBuffer::write(int8_t* buf, size_t len) {
-    if (space() < len)
-        return FAIL;
-    else {
-        size_t i = 0;
-        for(; i < len; i++) {
-            put(buf[i]);
-        }
-        return OK;
-    }
-}
+//ByteRingBuffer::return_value ByteRingBuffer::write(int8_t* buf, size_t len) {
+//    if (space() < len)
+//        return FAIL;
+//    else {
+//        size_t i = 0;
+//        for(; i < len; i++) {
+//            put(buf[i]);
+//        }
+//        return OK;
+//    }
+//}
 
 ByteRingBuffer::return_value ByteRingBuffer::write(const char* buf, size_t len) {
     if (space() < len)
@@ -84,7 +84,19 @@ ByteRingBuffer::return_value ByteRingBuffer::write(const char* buf, size_t len) 
     else {
         size_t i = 0;
         for(; i < len; i++) {
-            put(buf[i]);
+            write(buf[i]);
+        }
+        return OK;
+    }
+}
+
+ByteRingBuffer::return_value ByteRingBuffer::write(const char* buf) {
+    if (space() < sizeof(buf))
+        return FAIL;
+    else {
+        size_t i = 0;
+        for(; i < sizeof(buf); i++) {
+            write(buf[i]);
         }
         return OK;
     }
@@ -101,8 +113,6 @@ uint16_t ByteRingBuffer::space() {
     }
 }
 
-// } // end namespace ucToolbox
-
 #ifdef BUILD_UNIT_TESTS
 #include "logging.hpp"
 void ByteRingBuffer::printContents() {
@@ -114,6 +124,13 @@ void ByteRingBuffer::printContents() {
 
 void ByteRingBuffer::printContents_detailed() {
     int i = 0;
+    logstr(LOG_DEBUG, "-----------------------------\n");
+    logstr(LOG_DEBUG, "space: "); lognum(LOG_DEBUG, space());
+    logstr(LOG_DEBUG, "  full: ");
+    if (isFull())
+        logstr(LOG_DEBUG, "true\n");
+    else
+        logstr(LOG_DEBUG, "false\n");
     logstr(LOG_DEBUG, "idx   hex   ascii  get/putIdx\n");
     for(; i < storage_capacity; i++) {
         lognum(LOG_DEBUG, i);
@@ -128,14 +145,25 @@ void ByteRingBuffer::printContents_detailed() {
             logstr(LOG_DEBUG, "<--getIdx");
         logstr(LOG_DEBUG, "\n");
     }
+    logstr(LOG_DEBUG, "-----------------------------\n");
+}
+
+static void fillBuffer(ByteRingBuffer &buf) {
+    char c = 'a';
+    while (true) {
+        if (buf.write(c) == ByteRingBuffer::FAIL)
+            break;
+        if (++c == ('z' + 1))
+            c = 'a';
+    }
 }
 
 void ucToolbox::byteRingBufferUnitTest() {
     int8_t storage[10];
     ByteRingBuffer buf(storage, 10);
     logstr(LOG_DEBUG, "byteRingBufferUnitTest():\n");
-    ByteRingBuffer::return_value result = buf.put('a');
-    logstr(LOG_DEBUG, "buf.put('a') result: ");
+    ByteRingBuffer::return_value result = buf.write('a');
+    logstr(LOG_DEBUG, "buf.write('a') result: ");
     lognum(LOG_DEBUG, result);
     logch(LOG_DEBUG, '\n');
     result = buf.get();
@@ -152,6 +180,17 @@ void ucToolbox::byteRingBufferUnitTest() {
     logstr(LOG_DEBUG, "Writing 'stuff' to buffer. Buffer contents:\n");
     buf.write("stuff", sizeof("stuff"));
     buf.printContents_detailed();
+    logstr(LOG_DEBUG, "Filling buffer. Buffer contents:\n");
+    fillBuffer(buf);
+    buf.printContents_detailed();
+    logstr(LOG_DEBUG, "buf.write('yeah') result: ");
+    result = buf.write("yeah", sizeof("yeah"));
+    lognum(LOG_DEBUG, result);
+    logstr(LOG_DEBUG, "\nbuf.get() result: ");
+    logch(LOG_DEBUG, buf.get());
+    buf.printContents_detailed();
+    logstr(LOG_DEBUG, "buf.get() result: ");
+    logch(LOG_DEBUG, buf.get());
 }
 #endif // ifdef BUILD_UNIT_TESTS
 

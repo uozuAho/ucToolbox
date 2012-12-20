@@ -20,8 +20,8 @@ public:
 
     return_value peek();
     return_value get();
-    return_value put(int8_t byte);
-    return_value write(int8_t* buf, size_t len);
+    return_value write(const char byte);
+    return_value write(const char* buf);
     return_value write(const char* buf, size_t len);
     bool isFull();
     bool isEmpty();

@@ -1,6 +1,2 @@
-Now:
- *  Read up on namespaces. May be good to put all library code within a namespace
-Later:
- *  Define some constraints of the library, probably:
-    - No dynamic memory usage (or explicitly state when used)
-    - Exceptions?
+Logging code:
+    - Replace with logging code that can easily interface with streams (coming soon...)
