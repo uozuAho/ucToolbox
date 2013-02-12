@@ -3,22 +3,30 @@
 #ifdef BUILD_UNIT_TESTS
 #include "logging.hpp"
 
-void ucToolbox::streamUnitTest() {
+namespace ucToolbox {
+
+Log* logger = getLogger();
+#define dbg(x)      logger->print(Log::Dbg, (x))
+#define dbg_hex(x)  logger->printHex(Log::Dbg, (x))
+
+void streamUnitTest() {
     int8_t storage[10];
     Stream stream(storage, 10);
-    logstr(LOG_DEBUG, "streamUnitTest():\n");
+    dbg("streamUnitTest():\n");
     ByteRingBuffer::return_value result = stream.write('a');
-    logstr(LOG_DEBUG, "stream.write('a') result: ");
-    lognum(LOG_DEBUG, result);
-    logch(LOG_DEBUG, '\n');
+    dbg("stream.write('a') result: ");
+    dbg(result);
+    dbg('\n');
     result = stream.get();
-    logstr(LOG_DEBUG, "stream.get() result: ");
-    lognum(LOG_DEBUG, result);
-    logch(LOG_DEBUG, '\n');
+    dbg("stream.get() result: ");
+    dbg(result);
+    dbg('\n');
     result = stream.get();
-    logstr(LOG_DEBUG, "stream.get() result: ");
-    lognum(LOG_DEBUG, result);
-    logch(LOG_DEBUG, '\n');
+    dbg("stream.get() result: ");
+    dbg(result);
+    dbg('\n');
 }
+
+} // end namespace ucToolbox
 
 #endif // BUILD_UNIT_TESTS

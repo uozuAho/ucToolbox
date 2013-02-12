@@ -115,37 +115,42 @@ uint16_t ByteRingBuffer::space() {
 
 #ifdef BUILD_UNIT_TESTS
 #include "logging.hpp"
+Log* logger = getLogger();
+#define dbg(x)      logger->print(Log::Dbg, (x))
+#define dbg_hex(x)  logger->printHex(Log::Dbg, (x))
+
+//TODO: use the new logging module calls
 void ByteRingBuffer::printContents() {
     int i = 0;
     for (; i < storage_capacity; i++) {
-        logch(LOG_DEBUG, storage[i]);
+        dbg(storage[i]);
     }
 }
 
 void ByteRingBuffer::printContents_detailed() {
     int i = 0;
-    logstr(LOG_DEBUG, "-----------------------------\n");
-    logstr(LOG_DEBUG, "space: "); lognum(LOG_DEBUG, space());
-    logstr(LOG_DEBUG, "  full: ");
+    dbg("-----------------------------\n");
+    dbg("space: "); dbg(space());
+    dbg("  full: ");
     if (isFull())
-        logstr(LOG_DEBUG, "true\n");
+        dbg("true\n");
     else
-        logstr(LOG_DEBUG, "false\n");
-    logstr(LOG_DEBUG, "idx   hex   ascii  get/putIdx\n");
+        dbg("false\n");
+    dbg("idx   hex   ascii  get/putIdx\n");
     for(; i < storage_capacity; i++) {
-        lognum(LOG_DEBUG, i);
-        logstr(LOG_DEBUG, "     ");
-        lognum_hex(LOG_DEBUG, storage[i]);
-        logstr(LOG_DEBUG, "  ");
-        logch(LOG_DEBUG, storage[i]);
-        logstr(LOG_DEBUG, "       ");
+        dbg(i);
+        dbg("     ");
+        dbg(storage[i]);
+        dbg("  ");
+        dbg(storage[i]);
+        dbg("       ");
         if (put_idx == i)
-            logstr(LOG_DEBUG, "<--putIdx ");
+            dbg("<--putIdx ");
         if (get_idx == i)
-            logstr(LOG_DEBUG, "<--getIdx");
-        logstr(LOG_DEBUG, "\n");
+            dbg("<--getIdx");
+        dbg("\n");
     }
-    logstr(LOG_DEBUG, "-----------------------------\n");
+    dbg("-----------------------------\n");
 }
 
 static void fillBuffer(ByteRingBuffer &buf) {
@@ -161,36 +166,36 @@ static void fillBuffer(ByteRingBuffer &buf) {
 void ucToolbox::byteRingBufferUnitTest() {
     int8_t storage[10];
     ByteRingBuffer buf(storage, 10);
-    logstr(LOG_DEBUG, "byteRingBufferUnitTest():\n");
+    dbg("byteRingBufferUnitTest():\n");
     ByteRingBuffer::return_value result = buf.write('a');
-    logstr(LOG_DEBUG, "buf.write('a') result: ");
-    lognum(LOG_DEBUG, result);
-    logch(LOG_DEBUG, '\n');
+    dbg("buf.write('a') result: ");
+    dbg(result);
+    dbg('\n');
     result = buf.get();
-    logstr(LOG_DEBUG, "buf.get() result: ");
-    lognum(LOG_DEBUG, result);
-    logch(LOG_DEBUG, '\n');
+    dbg("buf.get() result: ");
+    dbg(result);
+    dbg('\n');
     result = buf.get();
-    logstr(LOG_DEBUG, "buf.get() result: ");
-    lognum(LOG_DEBUG, result);
-    logch(LOG_DEBUG, '\n');
-    logstr(LOG_DEBUG, "buf.peek() result: ");
-    lognum(LOG_DEBUG, buf.peek());
-    logch(LOG_DEBUG, '\n');
-    logstr(LOG_DEBUG, "Writing 'stuff' to buffer. Buffer contents:\n");
+    dbg("buf.get() result: ");
+    dbg(result);
+    dbg('\n');
+    dbg("buf.peek() result: ");
+    dbg(buf.peek());
+    dbg('\n');
+    dbg("Writing 'stuff' to buffer. Buffer contents:\n");
     buf.write("stuff", sizeof("stuff"));
     buf.printContents_detailed();
-    logstr(LOG_DEBUG, "Filling buffer. Buffer contents:\n");
+    dbg("Filling buffer. Buffer contents:\n");
     fillBuffer(buf);
     buf.printContents_detailed();
-    logstr(LOG_DEBUG, "buf.write('yeah') result: ");
+    dbg("buf.write('yeah') result: ");
     result = buf.write("yeah", sizeof("yeah"));
-    lognum(LOG_DEBUG, result);
-    logstr(LOG_DEBUG, "\nbuf.get() result: ");
-    logch(LOG_DEBUG, buf.get());
+    dbg(result);
+    dbg("\nbuf.get() result: ");
+    dbg(buf.get());
     buf.printContents_detailed();
-    logstr(LOG_DEBUG, "buf.get() result: ");
-    logch(LOG_DEBUG, buf.get());
+    dbg("buf.get() result: ");
+    dbg(buf.get());
 }
 #endif // ifdef BUILD_UNIT_TESTS
 

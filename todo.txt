@@ -1,2 +1,5 @@
-Logging code:
-    - Replace with logging code that can easily interface with streams (coming soon...)
+Logging:
+ -  Still struggling with this. It's currently ugly. Change it to fit these requirements:
+    - Logging code should be easy to write & read
+    - Cross platform
+    - Included / discluded depending on logging level (no run-time logging level change required)
