@@ -50,6 +50,7 @@ void Log::printHex(enum Level l, const int i) {
 }
 
 // Logger instance is created locally
+// TODO: make this extern
 Log log;
 
 // Return pointer to the logger instance

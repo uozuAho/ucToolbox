@@ -36,7 +36,11 @@ private:
     FILE* out_stream;
 };
 
+// TODO:
+//extern Log log;
+// instead of:
 Log* getLogger();
+// Then you won't need pointers everywhere to use the logger.
 
 void LogStdio_unitTest();
 
