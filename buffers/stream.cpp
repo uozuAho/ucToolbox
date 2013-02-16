@@ -3,11 +3,11 @@
 #ifdef BUILD_UNIT_TESTS
 #include "logging.hpp"
 
-namespace ucToolbox {
+using namespace ucToolbox;
 
-Log* logger = getLogger();
-#define dbg(x)      logger->print(Log::Dbg, (x))
-#define dbg_hex(x)  logger->printHex(Log::Dbg, (x))
+extern Log logger;
+#define dbg(x)      logger.print(Log::Dbg, (x))
+#define dbg_hex(x)  logger.printHex(Log::Dbg, (x))
 
 void streamUnitTest() {
     int8_t storage[10];
@@ -26,7 +26,5 @@ void streamUnitTest() {
     dbg(result);
     dbg('\n');
 }
-
-} // end namespace ucToolbox
 
 #endif // BUILD_UNIT_TESTS

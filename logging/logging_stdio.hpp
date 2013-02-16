@@ -1,6 +1,7 @@
 #ifndef LOGGING_STDIO_H
 #define LOGGING_STDIO_H
 
+#include <cstddef>
 #include <stdio.h>
 
 //TODO: make this header generic. Just need to do something like:
@@ -25,6 +26,7 @@ public:
     void print(enum Level l, const char c);
     void print(enum Level l, const char* str);
     void print(enum Level l, const int i);
+    void print(enum Level l, const std::size_t i);
     void printHex(enum Level l, const int i);
     // etc...
 
@@ -36,13 +38,11 @@ private:
     FILE* out_stream;
 };
 
-// TODO:
-//extern Log log;
-// instead of:
-Log* getLogger();
-// Then you won't need pointers everywhere to use the logger.
-
 void LogStdio_unitTest();
 
 }// end namespace ucToolbox
+
+// Logger in instantiated within logging_stdio.cpp
+extern ucToolbox::Log logger;
+
 #endif // LOGGING_STDIO_H

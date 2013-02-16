@@ -115,9 +115,9 @@ uint16_t ByteRingBuffer::space() {
 
 #ifdef BUILD_UNIT_TESTS
 #include "logging.hpp"
-Log* logger = getLogger();
-#define dbg(x)      logger->print(Log::Dbg, (x))
-#define dbg_hex(x)  logger->printHex(Log::Dbg, (x))
+extern Log logger;
+#define dbg(x)      logger.print(Log::Dbg, (x))
+#define dbg_hex(x)  logger.printHex(Log::Dbg, (x))
 
 //TODO: use the new logging module calls
 void ByteRingBuffer::printContents() {
