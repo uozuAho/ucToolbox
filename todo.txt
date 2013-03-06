@@ -1,3 +1,6 @@
+ - Put unit testing module within namespace, give functions appropriate names
+ - Move all current unit tests to the unit testing module
  - Finish unit tests for Queue and ContiguousQueue classes
  - Use Queue instead of ByteRingBuffer
- - Find/write a good unit testing framework
+ - Use STL unless known to be bad (ie tested and doesn't work). 
+    - Use ucLibc++

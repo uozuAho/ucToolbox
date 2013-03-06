@@ -41,6 +41,36 @@ public:
     }
 };
 
+// Extend the ContiguousQueue class with some debugging functions
+template<typename T, std::size_t N>
+class DebugContiguousQueue : public ContiguousQueue<T,N> {
+public:
+    void printContents_detailed() {
+        dbg("-----------------------------\n");
+        dbg("numEmptyElements: "); dbg(this->numEmptyElements());
+        dbg("  full: ");
+        if (this->isFull())
+            dbg("true\n");
+        else
+            dbg("false\n");
+        dbg("idx\t hex\t ascii\t front/back idx\n");
+        for(std::size_t i = 0; i < N; i++) {
+            dbg(i);
+            dbg("\t ");
+            dbg_hex(this->_M_instance[i]);
+            dbg("\t ");
+            dbg(this->_M_instance[i]);
+            dbg("\t ");
+            if (this->back_idx == i)
+                dbg("<--back_idx ");
+            if (this->front_idx == i)
+                dbg("<--front_idx");
+            dbg("\n");
+        }
+        dbg("-----------------------------\n");
+    }
+};
+
 void QueueUnitTests::byteQueueUnitTest() {
     dbg("byteQueueUnitTest():\n");
     dbg("Creating DebugQueue<char, 10> q:\n");

@@ -15,5 +15,4 @@ public:
 // TODO: find out why...later
 void queueUnitTests();
 
-
 #endif // #ifndef QUEUE_UNIT_TEST_H
