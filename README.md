@@ -3,24 +3,26 @@ ucToolbox
 
 Collection of C++ libraries intended for use in embedded systems
 
-Library restrictions
+Library information
 ================
 - No dynamic memory usage
 -- I may change my mind about this. If I do, any library module that uses dynamic memory will clearly state so.
 - No exceptions or RTTI
-- No STL (for the moment, due to my lack of understanding)
+- Will use STL. For my purposes, this will need to be a permissively licensed STL implementation such as
+LLVM's libc++ (http://libcxx.llvm.org/).
 
 Aims
 ====
-
-- To provide a large, useful set of libraries, useable in many embedded systems. 
+- To provide a reuseable set of classes, data structures and functions that allows quick implementation
+of common functionality. Similar to the arduino library but with a permissive license (ie. you can use
+this for proprietary applications).
 - To learn how to do so using C++ rather than C
 - To learn how to use git/github in the process
-- To provide this library to anyone, with a permissive license (MIT-ish?)
 
 Motivations
 ===========
-
-- There are good libraries scattered about, but I haven't managed to find a single source for a large variety of applications. 
-- I've used C for long enough - Arduino has showed me how easy it is to use C++ for a tiny embedded system.
-- I hate seeing useful code with a GPL or similar license. There I said it. I do a lot of coding at work and don't want to steal code.
+- There are good libraries scattered about, but I haven't managed to find a single source of a large variety 
+of applications with a permissive license.
+- I've used C for long enough - there are too many nice features of C++ to keep battling with C.
+- I find the GPL and LGPL too restrictive. The fact that they are a barrier to use in closed-source commercial 
+applications is a negative in my mind. I am more likely to contribute to source that lets me use it where I want.
