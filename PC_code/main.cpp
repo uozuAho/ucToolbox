@@ -1,7 +1,9 @@
 #include "UnitTesting.hpp"
 
+using namespace ucToolbox;
+
 int main() {
-    runAllTestSuites();
+    unitTests::runAllTestSuites();
     return 0;
 }
 

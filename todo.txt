@@ -1,6 +1,9 @@
- - Put unit testing module within namespace, give functions appropriate names
  - Move all current unit tests to the unit testing module
  - Finish unit tests for Queue and ContiguousQueue classes
  - Use Queue instead of ByteRingBuffer
- - Use STL unless known to be bad (ie tested and doesn't work). 
-    - Use ucLibc++
+ - Use STL. Must use a permissively-licensed implementation:
+  -- stdlibc++ (gnu) - no
+  -- uclibc++ - no
+  -- libc++ (clang) - yes, currently maintained, supports c++11, winner!
+  -- uSTL - yes, partial implementation
+  -- apache libc++ - yes, no updates since 2008

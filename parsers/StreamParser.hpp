@@ -6,6 +6,7 @@
 #include "stream.hpp"
 
 class StreamParser {
+public:
     // Possible states of the parser
     enum eParserState {
         eSEARCHING,     // searching for messages in the byte stream
@@ -24,9 +25,9 @@ class StreamParser {
     typedef bool (*headerByteChecker)(uint8_t byte);
     typedef eMsgParserResult (*eMsgParserPtr)(uint8_t* begin, uint8_t* end, uint16_t bytes_read);
 
+private:
     eParserState state;
-
-
+    Stream* stream;
 };
 
 struct ParserData_st {
