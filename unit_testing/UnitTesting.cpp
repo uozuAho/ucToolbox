@@ -1,9 +1,15 @@
-#include <stdio.h>
+#include "logging.hpp"
 #include "UnitTesting.hpp"
 #include "test_suites.hpp"
 
-void onAssertFail(int line, const char* file) {
-    printf("Assertion failed: File: %s, line %d\n", file, line);
+using namespace ucToolbox;
+
+extern Log logger;
+#define dbg(x)      logger.print(Log::Dbg, (x))
+#define dbg_hex(x)  logger.printHex(Log::Dbg, (x))
+
+void ucToolbox::unitTests::onAssertFail(int line, const char* file) {
+    dbg("Assertion failed: File: "); dbg(file); dbg(", line "); dbg(line); dbg("\n");
 }
 
 struct TestTotals_st {
@@ -12,7 +18,7 @@ struct TestTotals_st {
     int failed;
 } TestTotals;
 
-void runTestSuite(const TestSuite* suite) {
+void ucToolbox::unitTests::runTestSuite(const ucToolbox::unitTests::TestSuite* suite) {
     int test;
     int tests_failed = 0;
 
@@ -26,15 +32,17 @@ void runTestSuite(const TestSuite* suite) {
             TestTotals.failed++;
         }
     }
-    printf("Test suite '%s':\tTests run: %d,\tTests failed: %d\n", suite->name, test, tests_failed);
+    dbg("Test suite '"); dbg(suite->name); dbg("':\tTests run: "); dbg(test);
+    dbg(",\tTests failed: "); dbg(tests_failed); dbg("\n");
 }
 
-void runAllTestSuites() {
+void ucToolbox::unitTests::runAllTestSuites() {
     unsigned int suite = 0;
 
     for (suite = 0; suite < TOTAL_SUITES; suite++)
     {
-        runTestSuite(&all_suites[suite]);
+        ucToolbox::unitTests::runTestSuite(&all_suites[suite]);
     }
-    printf("Tests complete. Totals: Run: %d, Failed: %d\n", TestTotals.run, TestTotals.failed);
+    dbg("Tests complete. Totals: Run: "); dbg(TestTotals.run); dbg(", Failed: ");
+    dbg(TestTotals.failed); dbg("\n");
 }

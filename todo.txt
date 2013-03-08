@@ -5,5 +5,9 @@
  - Make the unit testing module use the logging module instead of stdio directly
  - Finish unit tests for Queue and ContiguousQueue classes
  - Use Queue instead of ByteRingBuffer
- - Use STL unless known to be bad (ie tested and doesn't work). 
-    - Use ucLibc++
+ - Use STL. Must use a permissively-licensed implementation:
+  -- stdlibc++ (gnu) - no
+  -- uclibc++ - no
+  -- libc++ (clang) - yes, currently maintained, supports c++11, winner!
+  -- uSTL - yes, partial implementation
+  -- apache libc++ - yes, no updates since 2008
