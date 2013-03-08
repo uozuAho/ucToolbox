@@ -1,5 +1,8 @@
+ - Fix pathname issue with TestSuiteGenerator.py, check that queue tests get made
+   properly and run.
  - Put unit testing module within namespace, give functions appropriate names
  - Move all current unit tests to the unit testing module
+ - Make the unit testing module use the logging module instead of stdio directly
  - Finish unit tests for Queue and ContiguousQueue classes
  - Use Queue instead of ByteRingBuffer
  - Use STL unless known to be bad (ie tested and doesn't work). 
