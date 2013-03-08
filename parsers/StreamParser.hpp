@@ -2,14 +2,13 @@
 #define STREAM_PARSER_H
 
 #include <stdint.h>
-#include <array>
 #include "stream.hpp"
 
 class StreamParser {
 public:
     // Possible states of the parser
     enum eParserState {
-        eSEARCHING,     // searching for messages in the byte stream
+        eSEARCHING,     // searching for messages in the stream
         ePARSING,       // parsing a message in the byte stream
         ePARSER_OFF     // not parsing
     };
@@ -48,16 +47,5 @@ void BS_PARSER_vInitialiseParser(struct ParserData_st* parser, Stream* stream, F
                                  eMsgParserPtr msgParser, us msg_timeout_ms);
 void BS_PARSER_vSetStream(struct ParserData_st* parser, Stream* stream);
 void BS_PARSER_vParseStream(struct ParserData_st* parser);
-
-//-------------------------------------------------------------------------------------------------
-// Unit Test stuff
-void BS_PARSER_vUnitTest();
-void BS_PARSER_TEST_vSendByte();
-void BS_PARSER_TEST_vParseBytes();
-
-// Debugging functions
-void BS_PARSER_vPrintParserStatus(struct ParserData_st* parser);
-void BS_PARSER_vPrintBytesInCurrentMsg_hex(struct ParserData_st* parser);
-void BS_PARSER_vPrintBytesInCurrentMsg_ascii(struct ParserData_st* parser);
 
 #endif // #ifndef STREAM_PARSER_H
