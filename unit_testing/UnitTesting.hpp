@@ -6,7 +6,8 @@ namespace unitTests {
 
 enum TEST_RESULT {
     test_passed,
-    test_failed
+    test_failed,
+    test_skipped
 };
 
 typedef TEST_RESULT TEST_FUNCTION;

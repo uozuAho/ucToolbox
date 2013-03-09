@@ -16,24 +16,37 @@ struct TestTotals_st {
     int run;
     int passed;
     int failed;
+    int skipped;
 } TestTotals;
 
 void ucToolbox::unitTests::runTestSuite(const ucToolbox::unitTests::TestSuite* suite) {
     int test;
     int tests_failed = 0;
+    int tests_skipped = 0;
 
     for (test = 0; test < suite->num_tests; test++)
     {
         TestTotals.run++;
-        if (suite->tests[test]() == 0)
+        switch (suite->tests[test]())
+        {
+        case test_passed:
             TestTotals.passed++;
-        else {
+            break;
+        case test_failed:
             tests_failed++;
             TestTotals.failed++;
+            break;
+        case test_skipped:
+            tests_skipped++;
+            TestTotals.skipped++;
+            break;
+        default:
+            break;
         }
     }
     dbg("Test suite '"); dbg(suite->name); dbg("':\tTests run: "); dbg(test);
-    dbg(",\tTests failed: "); dbg(tests_failed); dbg("\n");
+    dbg(",\tfailed: "); dbg(tests_failed);
+    dbg(",\tskipped: "); dbg(tests_skipped); dbg("\n");
 }
 
 void ucToolbox::unitTests::runAllTestSuites() {
@@ -44,5 +57,5 @@ void ucToolbox::unitTests::runAllTestSuites() {
         ucToolbox::unitTests::runTestSuite(&all_suites[suite]);
     }
     dbg("Tests complete. Totals: Run: "); dbg(TestTotals.run); dbg(", Failed: ");
-    dbg(TestTotals.failed); dbg("\n");
+    dbg(TestTotals.failed); dbg(", Skipped: "); dbg(TestTotals.skipped); dbg("\n");
 }
