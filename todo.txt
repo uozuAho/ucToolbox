@@ -1,4 +1,4 @@
- - Replace ByteRingBuffer with Stream. Make Stream like C style streams (FILE struct & stdio)
+ - Make Stream like C style streams (FILE struct & stdio)
  - Move all current unit tests to the unit testing module
  - Needed for initial embedded testing:
     - UART class

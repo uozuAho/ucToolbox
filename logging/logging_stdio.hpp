@@ -38,8 +38,6 @@ private:
     FILE* out_stream;
 };
 
-void LogStdio_unitTest();
-
 }// end namespace ucToolbox
 
 // Logger in instantiated within logging_stdio.cpp
