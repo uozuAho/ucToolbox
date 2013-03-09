@@ -1,11 +1,7 @@
- - Make Stream like C style streams (FILE struct & stdio)
- - Move all current unit tests to the unit testing module
+ - Use stdio.h for streams for now. Make Stream class only if stdio is too big or something...
  - Needed for initial embedded testing:
     - UART class
-        - Better stream class
- - Finish unit tests for Queue and ContiguousQueue classes
- - Use Queue instead of ByteRingBuffer
- - Use STL. Must use a permissively-licensed implementation:
+ - Use STL where reasonable. Must use a permissively-licensed implementation:
   -- stdlibc++ (gnu) - no
   -- uclibc++ - no
   -- libc++ (clang) - yes, currently maintained, supports c++11, winner!
