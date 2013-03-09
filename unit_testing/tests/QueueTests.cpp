@@ -6,6 +6,7 @@
 #include "UnitTesting.hpp"
 
 using namespace ucToolbox;
+using namespace unitTests;
 
 extern Log logger;
 #define dbg(x)      logger.print(Log::Dbg, (x))
@@ -71,7 +72,7 @@ public:
     }
 };
 
-unitTests::TEST_FUNCTION byteQueueConstructorTest() {
+TEST_FUNCTION byteQueueConstructorTest() {
     DebugQueue<char, 10> q;
 
     TEST_ASSERT(q.isEmpty() == true);
@@ -79,10 +80,10 @@ unitTests::TEST_FUNCTION byteQueueConstructorTest() {
     TEST_ASSERT(q.numEmptyElements() == 10);
     TEST_ASSERT(q.size() == 0);
 
-    return 0;
+    return test_passed;
 }
 
-unitTests::TEST_FUNCTION byteQueueTest() {
+TEST_FUNCTION byteQueueTest() {
     DebugQueue<char, 10> q;
 
     q.push('a');
@@ -100,10 +101,10 @@ unitTests::TEST_FUNCTION byteQueueTest() {
     TEST_ASSERT(q.readAndPop() == 's');
     TEST_ASSERT(q.readAndPop() == 't');
 
-    return 0;
+    return test_passed;
 }
 
-unitTests::TEST_FUNCTION byteQueueStressTest() {
+TEST_FUNCTION byteQueueStressTest() {
     DebugQueue<char, 10> q;
 
     q.push("SLDAJFAEPAREGARPGGARLAKFDLGK", sizeof("SLDAJFAEPAREGARPGGARLAKFDLGK"));
@@ -133,7 +134,7 @@ unitTests::TEST_FUNCTION byteQueueStressTest() {
     TEST_ASSERT(q.numEmptyElements() == 10);
     TEST_ASSERT(q.size() == 0);
 
-    return 0;
+    return test_passed;
 }
 
 #endif // ifdef BUILD_UNIT_TESTS

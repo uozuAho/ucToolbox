@@ -14,11 +14,6 @@
 
 #include <cstddef>
 
-// Unit tests need special access to private members
-#ifdef BUILD_UNIT_TESTS
-    #define INCLUDE_DEBUG_FUNCTIONS
-#endif
-
 namespace ucToolbox {
 
 template<typename _Tp, std::size_t _Nm>

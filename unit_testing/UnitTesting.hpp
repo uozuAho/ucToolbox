@@ -4,8 +4,14 @@
 namespace ucToolbox {
 namespace unitTests {
 
-typedef int TEST_FUNCTION;
+enum TEST_RESULT {
+    test_passed,
+    test_failed
+};
+
+typedef TEST_RESULT TEST_FUNCTION;
 typedef TEST_FUNCTION (*TEST_FUNCTION_ptr)();
+
 
 struct TestSuite {
     const char* name;
@@ -16,7 +22,8 @@ struct TestSuite {
 void runTestSuite(const TestSuite* suite);
 void runAllTestSuites();
 
-#define TEST_ASSERT(cond) if(!(cond)) { ucToolbox::unitTests::onAssertFail(__LINE__, __FILE__); return 1; }
+#define TEST_ASSERT(cond) if(!(cond)) { ucToolbox::unitTests::onAssertFail(__LINE__, __FILE__); \
+                                        return ucToolbox::unitTests::test_failed; }
 
 void onAssertFail(int line, const char* file);
 
