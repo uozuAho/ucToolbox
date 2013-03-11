@@ -6,7 +6,7 @@ using namespace ucToolbox;
 using namespace unitTests;
 
 #define dbg(x)      logger.print(Log::Dbg, (x))
-#define dbg_hex(x)  logger.printHex(Log::Dbg, (x))
+#define dbg_hex(x)  logger.print(Log::Dbg, (x), Log::hex)
 
 TEST_FUNCTION VerboseLoggingTest() {
     dbg("Skipping verbose logging test\n");

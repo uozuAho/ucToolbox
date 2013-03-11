@@ -2,13 +2,19 @@
 #define LOGGING_STDIO_H
 
 #include <cstddef>
-#include <stdio.h>
 
-//TODO: make this header generic. Just need to do something like:
-// typedef FILE ostream_type;
-//
-// then the stream type can be interchanged depending on where the code is being used
-// (eg. PC vs. embedded system not using standard lib)
+//TODO: rename this file to logging, and the current logging.hpp to logging_conf or similar
+//      everything in this header is now generic....apart from the following definitions. They
+//      should be in logging.conf
+// Define the type of stream used for logging output
+#define STREAM_TYPE_STDIO
+//#define STREAM_TYPE_IOSTREAM
+//#define STREAM_TYPE_CUSTOM
+
+#ifdef STREAM_TYPE_STDIO
+    #include "stdio.h"
+    typedef FILE ostream_type;
+#endif
 
 namespace ucToolbox {
 
@@ -22,20 +28,25 @@ public:
         Critical,
     };
 
+    enum Format {
+        ascii,
+        dec,
+        hex
+    };
+
     Log();
-    void print(enum Level l, const char c);
-    void print(enum Level l, const char* str);
-    void print(enum Level l, const int i);
-    void print(enum Level l, const std::size_t i);
-    void printHex(enum Level l, const int i);
+    void print(enum Level l, const char c, Format f=ascii);
+    void print(enum Level l, const char* str, Format f=ascii);
+    void print(enum Level l, const int i, Format f=dec);
+    void print(enum Level l, const std::size_t i, Format f=dec);
     // etc...
 
     void setVerbosity(Level l);
-    void setOutputStream(FILE* stream);
+    void setOutputStream(ostream_type* stream);
 
 private:
     Level verbosity;
-    FILE* out_stream;
+    ostream_type* out_stream;
 };
 
 }// end namespace ucToolbox

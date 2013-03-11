@@ -10,6 +10,8 @@ namespace ucToolbox {
 class Stream {
 public:
     Stream();
+private:
+
 };
 
 } // end namespace ucToolbox

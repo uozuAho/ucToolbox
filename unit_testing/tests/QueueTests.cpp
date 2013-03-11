@@ -10,7 +10,7 @@ using namespace unitTests;
 
 extern Log logger;
 #define dbg(x)      logger.print(Log::Dbg, (x))
-#define dbg_hex(x)  logger.printHex(Log::Dbg, (x))
+#define dbg_hex(x)  logger.print(Log::Dbg, (x), Log::hex)
 
 // Extend the Queue class with some debugging functions
 template<typename T, std::size_t N>
