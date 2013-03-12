@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "logging_stdio.hpp"
+#include "logging.hpp"
 
 using namespace ucToolbox;
 
@@ -12,7 +12,7 @@ void Log::setVerbosity(Level l) {
     verbosity = l;
 }
 
-void Log::setOutputStream(FILE* stream) {
+void Log::setOutputStream(ostream_type* stream) {
     out_stream = stream;
 }
 
@@ -54,6 +54,12 @@ void Log::print(enum Level l, const int i, Format f) {
     case dec:
         if (l >= verbosity) {
             fprintf(out_stream, "%d", i);
+            fflush(out_stream);
+        }
+        break;
+    case hex:
+        if (l >= verbosity) {
+            fprintf(out_stream, "0x%2x", i);
             fflush(out_stream);
         }
         break;
