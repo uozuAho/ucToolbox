@@ -1,0 +1,4 @@
+# Any filename listed below will be ignored by TestSuiteGenerator.py when 
+# building the test suites.
+
+StdioTests.c
