@@ -1,10 +1,6 @@
-#include "conditional_logging.h"
-#include "logging.h"
 #include "UnitTesting.h"
+#include "UnitTesting_conf.h"
 #include "test_suites.h"
-
-#define print_cstr(x)   log_cstr(x, ascii)
-#define print_si(x)     log_si(x, ascii)
 
 void UnitTesting_vOnAssertFail(const char* msg, const char* file, int line) {
     print_cstr("Assertion failed: "); print_cstr(msg); print_cstr(" File: ");

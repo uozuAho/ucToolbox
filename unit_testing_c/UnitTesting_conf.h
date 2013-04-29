@@ -1,0 +1,2 @@
+#ifndef UNIT_TESTIG_CONF_H#define UNIT_TESTIG_CONF_H/* ------------------------------------------- *//*  Logging / printout configuration           */// Add the inclues needed for logging / prinout functions#include "conditional_logging.h"#include "logging.h"// The following definitions must be made as they// are used by the unit testing code. If you don't// want printouts (why?), make the definitions blank#define print_cstr(x)   log_cstr(x, ascii)#define print_si(x)     log_si(x, ascii)
+#endif // #ifndef UNIT_TESTIG_CONF_H

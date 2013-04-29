@@ -123,7 +123,7 @@ def genTestSuiteName(source_file):
     return os.path.splitext(filename)[0]
 
 def getTestFunctionsFromFile(path):
-    function_pattern = re.compile(r'TEST_FUNCTION\s+.+\s*\(')
+    function_pattern = re.compile(r'TEST_FUNCTION\s+(\w+)\s*?\(')
     infile = open(path)
     intext = infile.read()
     infile.close()
@@ -141,7 +141,7 @@ def getSourceAndHeaderFiles(path):
     sources = []
     headers = []
     EXCLUDE_FILES.extend(getExcludesFromFile("excludes.txt"))
-    
+
     for item in os.listdir(path):
         if item in EXCLUDE_FILES:
             continue
