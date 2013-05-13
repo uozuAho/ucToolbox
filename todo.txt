@@ -5,6 +5,9 @@
     triggered by a timer, that samples the program counter. Send logged program counter
     values to PC for analysis against map file.
 
+- Tracing
+ - See http://www.mentor.com/embedded-software/sourcery-tools/sourcery-analyzer/
+
 - Standalone C/C++ unit test framework. Try using cog or your own code generator.
  - Check out gtest first
 
