@@ -142,14 +142,21 @@ def getSourceAndHeaderFiles(path):
     headers = []
     EXCLUDE_FILES.extend(getExcludesFromFile("excludes.txt"))
 
-    for item in os.listdir(path):
-        if item in EXCLUDE_FILES:
-            continue
-        fullpath = os.path.join(path,item)
-        if isSourceFile(fullpath):
-            sources.append(fullpath)
-        elif isHeaderFile(fullpath):
-            headers.append(fullpath)
+    for dirpath, dirnames, filenames in os.walk(path):
+        if DEBUG:
+            print "Searching", dirpath
+
+        for filename in filenames:
+            fullpath = os.path.join(dirpath, filename)
+            if filename in EXCLUDE_FILES:
+                if DEBUG:
+                    print "Ignoring", fullpath
+                continue
+
+            if isSourceFile(fullpath):
+                sources.append(fullpath)
+            elif isHeaderFile(fullpath):
+                headers.append(fullpath)
     return sources, headers
 
 def getExcludesFromFile(path):
