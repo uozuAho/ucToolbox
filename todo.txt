@@ -1,9 +1,14 @@
- - Use stdio.h for streams for now. Make Stream class only if stdio is too big or something...
- - Needed for initial embedded testing:
-    - UART class
- - Use STL where reasonable. Must use a permissively-licensed implementation:
-  -- stdlibc++ (gnu) - no
-  -- uclibc++ - no
-  -- libc++ (clang) - yes, currently maintained, supports c++11, winner!
-  -- uSTL - yes, partial implementation
-  -- apache libc++ - yes, no updates since 2008
+- Profiler. 
+ - See gprof 
+ - See http://www.blisstonia.com/eolson/notes/profile_arm.php
+  - If the above link is broken, here's the idea in short. Set up a FIQ handler that is 
+    triggered by a timer, that samples the program counter. Send logged program counter
+    values to PC for analysis against map file.
+
+- Tracing
+ - See http://www.mentor.com/embedded-software/sourcery-tools/sourcery-analyzer/
+
+- Standalone C/C++ unit test framework. Try using cog or your own code generator.
+ - Check out gtest first
+
+- Logging test generator
