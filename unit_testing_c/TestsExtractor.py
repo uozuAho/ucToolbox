@@ -1,3 +1,10 @@
+""" Extracts unit test information from c files
+
+TODO:
+- encode test suite names in source files rather than
+  having separate config files
+"""
+
 import re
 
 def main():

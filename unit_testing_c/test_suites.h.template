@@ -1,0 +1,28 @@
+/*
+Template for creating test suit header file.
+Feed this to pyCodeGen.py
+
+TODO: Rename this to test_suite.h.template
+
+Test suite
+ - test set
+	- test function
+*/
+#PYGEN_BEGIN
+# TODO: This won't work since the generator script
+# doesn't run in this directory.
+import TestsExtractor
+#PYGEN_END
+
+#ifndef TEST_SUITES_H
+#define TEST_SUITES_H
+
+#include "UnitTesting.h"
+
+extern const TestSuite asdf;
+
+#define TOTAL_SUITES    1
+
+extern const TestSuite* all_suites[TOTAL_SUITES];
+
+#endif // TEST_SUITES_H

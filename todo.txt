@@ -1,4 +1,7 @@
- - Use stdio.h for streams for now. Make Stream class only if stdio is too big or something...
+ - Use googletest for unit testing
+ -- Embedded will have to use other test harness... Unity?
+ - Use stdio.h for streams for now. Make Stream class only if stdio is too big
+   or something...
  - Needed for initial embedded testing:
     - UART class
  - Use STL where reasonable. Must use a permissively-licensed implementation:
