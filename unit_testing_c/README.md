@@ -1,13 +1,22 @@
-Module Description
-==================
+unit_testing_c
+==============
 
 This module provides a central place to write all unit tests,
 and provides a script to automatically generate tests suites
-that can be called from main() or wherever.
+that can be called from main() or wherever. This module only
+supports C, for C++ support see the unit_testing_cpp module.
 
-All you need to do is write your test functions, run
-TestSuiteGenerator.py (requires python), then call
-UnitTesting_vRunAllTestSuites() to run the tests.
+To get started, edit "UnitTesting_conf.h" to suit your platform.
+There's currently only a few lines you need to change in there.
+
+Next, run TestSuiteGenerator.py (requires python). Any test code
+under tests/ will be read and included in the generated test
+suites.
+
+Now you have all you need to compile and run your unit tests.
+To run the tests within your code, call UnitTesting_vRunAllTestSuites().
+You'll need to include "UnitTesting.h" to the file that makes
+this function call.
 
 
 How to write a test function
@@ -45,3 +54,8 @@ TEST_FUNCTION func(void) {
     return test_passed;
 }
 
+
+Current limitations
+===================
+
+- Test names must be globally unique

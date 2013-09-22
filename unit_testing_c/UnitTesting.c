@@ -1,5 +1,9 @@
 #include "UnitTesting.h"
 #include "UnitTesting_conf.h"
+<<<<<<< HEAD
+=======
+#include "test_suites.h"
+>>>>>>> beb73f8ad8ca143c4eeafd3d30f7095741f930a6
 
 void UnitTesting_vOnAssertFail(const char* msg, const char* file, int line) {
     print_cstr("Assertion failed: "); print_cstr(msg); print_cstr(" File: ");

@@ -1,0 +1,6 @@
+TODO
+====
+
+- Source files that don't contain any tests should be excluded
+  from test suite generation. Currently each source file
+  generates a test suite.
